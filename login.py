@@ -51,8 +51,9 @@ class Login:
             if not self.login(account,psd):
                 print("fail")
             else:
-                break
+                return
 
+        print("all account have been tested")
         self.browser.close()
             
     def login(self,account,psd):
