@@ -8,6 +8,7 @@ parser = argparse.ArgumentParser()
 parser.add_argument('--file', type=str, default='zm.txt')
 configs = parser.parse_args()
 
+print(configs)
 
 def ping(ping_url='8.8.8.8',my_timeout= 6):
     """
