@@ -8,8 +8,6 @@ parser = argparse.ArgumentParser()
 parser.add_argument('--file', type=str, default='zm.txt')
 configs = parser.parse_args()
 
-print(configs)
-
 def ping(ping_url='8.8.8.8',my_timeout= 6):
     """
     测试能否ping通一个网址,设置最大超时为`my_timeout` 秒
@@ -27,7 +25,7 @@ def ping(ping_url='8.8.8.8',my_timeout= 6):
     return 0
 
 if __name__ == '__main__':
-    loginer = Login('./zm.txt')
+    loginer = Login(configs.file)
     ping_url = 'www.baidu.com'
     counts_login = 0
     counts_test = 0
