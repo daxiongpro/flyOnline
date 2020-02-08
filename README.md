@@ -20,12 +20,5 @@
 
 **使用**
 
-* `python detect.py --file zm.txt`
+* `python main.py --file zm.txt`
 
-**TODO**
-
-- [x] `TimeoutException: Message: Timeout loading page after 300000ms`,解决思路：进行错误捕捉，如果不能加载则重新登录网址
-
-**CHANGE LOG**
-
-* `Login.try_all` 对所有账户进行测试，登录一个账号后，有逻辑错误,修改: break --> return
