@@ -42,6 +42,7 @@ class Login:
         self.accounts = Account(filename)
 
     def clean(self):
+        # unused
         for account,psd in self.accounts.items():
             if not self.login(account,psd):
                 print("fail")
@@ -49,15 +50,22 @@ class Login:
     def try_all(self):
         for account,psd in self.accounts.items():
             if not self.login(account,psd):
-                print("fail")
+                print("login error: {},{}",account, psd)
             else:
                 return
 
         print("all account have been tested")
-        self.browser.close()
             
     def login(self,account,psd):
-        self.browser.get(r"http://10.22.63.253/0.htm")
+        try:
+            #solve `TimeoutException: Message: Timeout loading page after 300000ms`
+            self.browser.get(r"http://10.22.63.253/0.htm")
+        except Exception as e:
+            print(e)
+            self.browser.quit()
+            self.broser = webdriver.Firefox(options=self.opt)
+            self.browser.get(r"http://10.22.63.253/0.htm")
+
         username = self.browser.find_element_by_xpath('//input[@type="text"]')
         password = self.browser.find_element_by_xpath('//input[@type="password"]')
 
