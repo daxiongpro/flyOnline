@@ -2,7 +2,7 @@ import time
 from selenium import webdriver
 from selenium.webdriver.firefox.options import Options as FirefoxOptions
 
-class Account():
+class Account:
     def __init__(self,filename='./zm.txt'):
         self.filename = filename
         self.accounts = self.process_file(filename) 
@@ -29,6 +29,9 @@ class Account():
             result += k+','+v+'\n'
         return result
     def save(self):
+        """
+        unused
+        """
         with open(self.filename,'w') as f:
             f.write(self.__repr__())
 
