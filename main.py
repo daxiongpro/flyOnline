@@ -18,11 +18,11 @@ def random_sleep(mean, std,SLEEP_NUM = 0):
     return SLEEP_NUM
 
 if __name__ == '__main__':
-    COUNTER = 0
-    loginer = Login(configs.file)
+    SLEEP_NUM = 0
     while(True):
         if not ping(url = 'www.baidu.com'):# ping fail
             print("网络异常，尝试登录NBU账号")
+            loginer = Login(configs.file)
             loginer.try_all()
-        COUNTER = random_sleep(300,60,COUNTER)
+        SLEEP_NUM = random_sleep(300,60,SLEEP_NUM)
 
