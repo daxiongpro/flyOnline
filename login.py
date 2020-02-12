@@ -1,4 +1,5 @@
 import time
+
 from selenium import webdriver
 from selenium.webdriver.firefox.options import Options as FirefoxOptions
 
@@ -36,12 +37,12 @@ class Account:
             f.write(self.__repr__())
 
 class Login:
-    opt = FirefoxOptions()
-    opt.add_argument('--headless')
-    browser = webdriver.Firefox(options=opt)
-    time.sleep(2)
 
     def __init__(self,filename='./zm.txt'):
+        self.opt = FirefoxOptions()
+        self.opt.add_argument('--headless')
+        self.browser = webdriver.Firefox(options=self.opt)
+        time.sleep(2)
         self.accounts = Account(filename)
 
     def clean(self):
@@ -58,7 +59,6 @@ class Login:
                 return
 
         print("all account have been tested")
-            
     def login(self,account,psd):
         try:
             #solve `TimeoutException: Message: Timeout loading page after 300000ms`
@@ -67,6 +67,7 @@ class Login:
             print(e)
             self.browser.quit()
             self.broser = webdriver.Firefox(options=self.opt)
+            time.sleep(2)
             self.browser.get(r"http://10.22.63.253/0.htm")
 
         username = self.browser.find_element_by_xpath('//input[@type="text"]')
