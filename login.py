@@ -39,6 +39,7 @@ class Account:
 class Login:
 
     def __init__(self,filename='./zm.txt'):
+        self.RETRY = 0
         self.opt = FirefoxOptions()
         self.opt.add_argument('--headless')
         self.browser = webdriver.Firefox(options=self.opt)
@@ -63,33 +64,39 @@ class Login:
         try:
             #solve `TimeoutException: Message: Timeout loading page after 300000ms`
             self.browser.get(r"http://10.22.63.253/0.htm")
-        except Exception as e:
-            print(e)
-            self.browser.quit()
-            self.broser = webdriver.Firefox(options=self.opt)
-            time.sleep(2)
-            self.browser.get(r"http://10.22.63.253/0.htm")
-
-        username = self.browser.find_element_by_xpath('//input[@type="text"]')
-        password = self.browser.find_element_by_xpath('//input[@type="password"]')
-
-        username.clear()
-        username.send_keys(account)
-        password.clear()
-        password.send_keys(psd)
-
-        commit = self.browser.find_element_by_id("submit")
-        commit.click()
-        time.sleep(2)
-        if "Drcom" not in self.browser.title:
+            username = self.browser.find_element_by_xpath('//input[@type="text"]')
+            password = self.browser.find_element_by_xpath('//input[@type="password"]')
+    
+            username.clear()
+            username.send_keys(account)
+            password.clear()
+            password.send_keys(psd)
+    
             commit = self.browser.find_element_by_id("submit")
             commit.click()
             time.sleep(2)
-            return False
-        else:
-            print('Online now. Account used: ', account)
+            if "Drcom" not in self.browser.title:
+                commit = self.browser.find_element_by_id("submit")
+                commit.click()
+                time.sleep(2)
+                return False
+            else:
+                print('Online now. Account used: ', account)
+                time.sleep(2)
+                self.RETRY = 0
+                return True
+        except Exception as e:
+            print("--ERROR OCCURRED:",e)
+            self.browser.quit()
+            self.broser = webdriver.Firefox(options=self.opt)
             time.sleep(2)
-            return True
+            self.RETRY += 1
+            if self.RETRY < 10:
+                print("Maybe connection outtime,{}th retry...".format(self.RETRY))
+                self.login()
+            else:
+                return False
+
 if __name__ == '__main__':
     loginer = Login('./zm.txt')
     loginer.try_all()

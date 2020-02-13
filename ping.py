@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 import os
+import time
 
-def ping(url="www.baidu.com", default_ip=["125.39.52.26", "106.13.147.175"]):
+def ping(url="www.baidu.com", default_ip=["125.39.52.26", "106.13.147.175"], wait=None):
     """
     测试能否ping通特定网址
     args 
@@ -22,6 +23,9 @@ def ping(url="www.baidu.com", default_ip=["125.39.52.26", "106.13.147.175"]):
                 return True
 
         print("网络异常")
+        if wait is not None:
+            time.sleep(wait)
+
         return False
 
 if __name__ == "__main__":
