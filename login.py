@@ -93,7 +93,7 @@ class Login:
             self.RETRY += 1
             if self.RETRY < 10:
                 print("Maybe connection outtime,{}th retry...".format(self.RETRY))
-                self.login()
+                return self.login()
             else:
                 return False
 
