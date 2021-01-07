@@ -63,7 +63,7 @@ class Login:
     def try_all(self):
         for account, psd in self.accounts.items():
             if not self.login(account, psd):
-                print("login error: {},{}", account, psd)
+                print("login error: {}--{}".format(account, psd))
             else:
                 return
 

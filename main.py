@@ -21,7 +21,7 @@ def random_sleep(mean, std, SLEEP_NUM=0):
 if __name__ == '__main__':
     SLEEP_NUM = 0
     while True:
-        if not ping(url='www.baidu.com', wait=10):  # ping fail
+        if not ping(url='www.baidu.com', wait=1):  # ping fail
             print("网络异常，尝试登录NBU账号")
             loginer = Login(configs.file)
             loginer.try_all()

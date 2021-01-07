@@ -15,7 +15,9 @@ def ping(url="www.baidu.com", default_ip=None, wait=None):
            False 不通
     """
     if default_ip is None:
-        default_ip = ['10.22.75.213', '10.22.75.214']
+        default_ip = ['www.qq.com', 'www.douyu.com']
+
+    # result = os.system(u"ping {} -c 4".format(url))
     result = os.system(u"ping {}".format(url))
     if result == 0:
         print("ping {}正常".format(url))
@@ -24,6 +26,8 @@ def ping(url="www.baidu.com", default_ip=None, wait=None):
         # 备选机制
         print("{} 不通，下面尝试备用ip".format(url))
         for ip in default_ip:
+            print('正在ping{}'.format(ip))
+            # if os.system(u"ping {} -c 4".format(ip)) == 0:
             if os.system(u"ping {}".format(ip)) == 0:
                 return True
 
@@ -36,4 +40,4 @@ def ping(url="www.baidu.com", default_ip=None, wait=None):
 
 if __name__ == "__main__":
     result = ping()
-    print(result)
+    print('\n', result)
