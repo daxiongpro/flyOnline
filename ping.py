@@ -15,7 +15,7 @@ def ping(url="www.baidu.com", default_ip=None, wait=None):
            False 不通
     """
     if default_ip is None:
-        default_ip = ['www.qq.com', 'www.douyu.com']
+        default_ip = []
 
     # result = os.system(u"ping {} -c 4".format(url))
     result = os.system(u"ping {}".format(url))

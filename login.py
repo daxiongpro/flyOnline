@@ -48,7 +48,7 @@ class Login:
         self.RETRY = 0
         # self.opt = FirefoxOptions()
         self.opt = ChromeOptions()
-        # self.opt.add_argument('--headless')
+        self.opt.add_argument('--headless')
         # self.browser = webdriver.Firefox(options=self.opt)
         self.browser = webdriver.Chrome(options=self.opt)
         time.sleep(2)

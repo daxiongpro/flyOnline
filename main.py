@@ -25,4 +25,4 @@ if __name__ == '__main__':
             print("网络异常，尝试登录NBU账号")
             loginer = Login(configs.file)
             loginer.try_all()
-        SLEEP_NUM = random_sleep(300, 60, SLEEP_NUM)
+        SLEEP_NUM = random_sleep(120, 60, SLEEP_NUM)
