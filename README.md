@@ -18,7 +18,14 @@
 * 4.安装火狐浏览器
 * 5.新建一个文件`zm.txt`，每行格式：`password,id`
 
+
+**chrome使用方法**
+* 1.从https://sites.google.com/a/chromium.org/chromedriver/home 下载对应的chrome驱动。（这里我已经放在need文件夹下了）
+* 2.将驱动解压，放到python.exe和chrome.exe相同的两个文件夹下
+
 **使用**
 
 * `python main.py --file zm.txt`
+
+
 
